@@ -8,74 +8,503 @@
   <meta name="description" content="Anne Therese Argonza: Data Science student at NJIT. Projects, experience, and contact info.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700;800&display=swap" rel="stylesheet">
   <style>
-    /* EDIT (optional): change --accent to any color you like, e.g. #6C63FF or #2A9D8F */
+    /* Palette sampled from the Yoshi illustration.
+       Wash #E8F0D8, leaf #B8D898 / #C8E0A8 / #88B070,
+       moss outline #50643C, boot #C08860 / #D8A068, cheek #C75751.
+       Type is M PLUS Rounded 1c, a rounded gothic in the same family as the Nintendo wordmark. */
     :root {
-      --accent: #D6457A;
-      --accent-soft: #FBE4EC;
-      --bg: #FCFAFB;
-      --card: #FFFFFF;
-      --text: #1F1B24;
-      --muted: #6B6475;
-      --border: #ECE6EE;
+      --bg: #E8F0D8;
+      --bg-deep: #D8E8C0;
+      --leaf: #B8D898;
+      --leaf-bright: #C8E0A8;
+      --leaf-shadow: #88B070;
+      --moss: #50643C;
+      --moss-deep: #3E5332;
+      --ink: #243024;
+      --muted: #4C5B44;
+      --cream: #F7F6F0;
+      --surface: #FBF9F4;
+      --boot: #D8A068;
+      --boot-deep: #C08860;
+      --boot-ink: #7A4E30;
+      --cheek: #C75751;
+      --cheek-ink: #8E3A36;
+      --line: rgba(80, 100, 60, 0.18);
+      --font: "M PLUS Rounded 1c", "Trebuchet MS", "Verdana", sans-serif;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     html { scroll-behavior: smooth; }
-    body { font-family: "Inter", system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; }
 
-    nav { position: sticky; top: 0; background: rgba(252,250,251,0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); z-index: 10; }
-    nav .wrap { display: flex; justify-content: space-between; align-items: center; height: 60px; }
-    nav .logo { font-weight: 700; color: var(--text); }
-    nav ul { display: flex; gap: 22px; list-style: none; }
-    nav ul a { color: var(--muted); font-size: 0.95rem; font-weight: 500; }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--ink);
+      line-height: 1.65;
+      font-size: 1.0625rem;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+    }
 
-    header.wrap { padding: 96px 24px 72px; }
-    .hello { color: var(--accent); font-weight: 600; margin-bottom: 8px; }
-    h1 { font-size: clamp(2.4rem, 6vw, 3.6rem); line-height: 1.1; letter-spacing: -0.02em; }
-    .tagline { font-size: 1.25rem; color: var(--muted); margin: 16px 0 32px; max-width: 600px; }
-    .buttons { display: flex; flex-wrap: wrap; gap: 12px; }
-    .btn { display: inline-block; padding: 11px 22px; border-radius: 999px; font-weight: 600; border: 2px solid var(--accent); }
-    .btn.primary { background: var(--accent); color: #fff; }
-    .btn.secondary { color: var(--accent); background: transparent; }
-    .btn:hover { text-decoration: none; opacity: 0.88; }
+    ::selection {
+      background: var(--leaf-shadow);
+      color: var(--cream);
+    }
 
-    section { padding: 56px 0; border-top: 1px solid var(--border); }
-    h2 { font-size: 1.6rem; margin-bottom: 24px; letter-spacing: -0.01em; }
-    .about { display: flex; gap: 32px; align-items: flex-start; }
-    .about img { width: 160px; height: 160px; border-radius: 50%; object-fit: cover; flex-shrink: 0; }
-    .about p + p { margin-top: 12px; }
+    a {
+      color: var(--cheek-ink);
+      text-decoration-thickness: 1px;
+      text-underline-offset: 3px;
+    }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
-    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 22px; display: flex; flex-direction: column; }
-    .card h3 { font-size: 1.1rem; margin-bottom: 8px; }
-    .card p { color: var(--muted); font-size: 0.95rem; flex-grow: 1; }
-    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 14px 0; }
-    .tag { background: var(--accent-soft); color: var(--accent); font-size: 0.8rem; font-weight: 600; padding: 3px 10px; border-radius: 999px; }
-    .card .links { display: flex; gap: 16px; font-weight: 600; font-size: 0.95rem; }
+    a:hover { color: var(--moss-deep); }
 
-    .job { display: grid; grid-template-columns: 170px 1fr; gap: 20px; padding: 18px 0; }
-    .job + .job { border-top: 1px dashed var(--border); }
-    .job .when { color: var(--muted); font-size: 0.95rem; }
-    .job h3 { font-size: 1.05rem; }
-    .job .org { color: var(--accent); font-weight: 600; font-size: 0.95rem; margin-bottom: 6px; }
-    .job ul { padding-left: 18px; color: var(--muted); }
+    :focus-visible {
+      outline: 2px solid var(--boot-deep);
+      outline-offset: 3px;
+    }
 
-    .skills { display: flex; flex-wrap: wrap; gap: 10px; }
-    .skills span { background: var(--card); border: 1px solid var(--border); padding: 8px 16px; border-radius: 999px; font-weight: 500; }
+    .wrap {
+      width: min(1040px, calc(100% - 48px));
+      margin: 0 auto;
+    }
 
-    .contact p { color: var(--muted); margin-bottom: 20px; max-width: 560px; }
-    footer { padding: 32px 0 48px; color: var(--muted); font-size: 0.9rem; text-align: center; }
+    /* Header: thin cream bar, wordmark left, links right — the My Nintendo frame, without a hamburger. */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: var(--cream);
+      border-bottom: 1px solid var(--line);
+    }
+
+    nav .wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      min-height: 64px;
+      flex-wrap: wrap;
+      padding: 10px 0;
+    }
+
+    .logo {
+      color: var(--ink);
+      font-weight: 800;
+      font-size: 1.05rem;
+      letter-spacing: -0.03em;
+      text-decoration: none;
+      line-height: 1.1;
+    }
+
+    .logo:hover { color: var(--moss); }
+
+    nav ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 22px;
+      list-style: none;
+    }
+
+    nav ul a {
+      color: var(--ink);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      padding: 4px 0;
+      border-bottom: 2px solid transparent;
+    }
+
+    nav ul a:hover {
+      color: var(--moss-deep);
+      border-bottom-color: var(--boot-deep);
+    }
+
+    /* Hero: full-bleed leaf field, name on the left, offer and stacked pills on the right. */
+    .hero {
+      background-color: var(--leaf);
+      background-image: linear-gradient(180deg, var(--leaf-bright) 0%, var(--leaf) 58%, #B0D890 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+      grid-template-areas:
+        "title hello"
+        "title tag"
+        "title actions";
+      column-gap: 64px;
+      row-gap: 0;
+      align-items: center;
+      padding: 84px 0 68px;
+    }
+
+    .hello {
+      grid-area: hello;
+      align-self: end;
+      font-weight: 700;
+      font-size: 1rem;
+      letter-spacing: -0.01em;
+      color: var(--moss-deep);
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      grid-area: title;
+      align-self: center;
+      font-size: clamp(3rem, 6.2vw, 5.15rem);
+      font-weight: 800;
+      line-height: 0.92;
+      letter-spacing: -0.04em;
+      text-wrap: balance;
+      color: var(--ink);
+    }
+
+    .tagline {
+      grid-area: tag;
+      font-size: clamp(1.4rem, 2.4vw, 1.9rem);
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -0.025em;
+      color: var(--ink);
+      margin: 0 0 26px;
+      text-wrap: balance;
+    }
+
+    .buttons {
+      grid-area: actions;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 10px;
+      width: min(100%, 280px);
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 22px;
+      border-radius: 999px;
+      border: 1.5px solid var(--moss);
+      background: transparent;
+      color: var(--ink);
+      font-family: inherit;
+      font-weight: 800;
+      font-size: 1rem;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn.primary {
+      background: var(--moss);
+      border-color: var(--moss);
+      color: var(--cream);
+    }
+
+    .btn.primary:hover {
+      background: var(--moss-deep);
+      border-color: var(--moss-deep);
+      color: var(--cream);
+    }
+
+    .btn.secondary:hover {
+      background: rgba(80, 100, 60, 0.1);
+      color: var(--ink);
+    }
+
+    .btn:active { transform: translateY(1px); }
+
+    .hero::after {
+      content: "";
+      display: block;
+      height: 56px;
+      background-image: radial-gradient(circle, rgba(36, 48, 36, 0.28) 1.05px, transparent 1.2px);
+      background-size: 13px 13px;
+    }
+
+    main section {
+      padding: 72px 0;
+      border-top: 1px solid var(--line);
+      scroll-margin-top: 88px;
+    }
+
+    h2 {
+      font-size: clamp(1.7rem, 3vw, 2.15rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      margin-bottom: 28px;
+    }
+
+    h2::before {
+      content: "";
+      display: block;
+      width: 36px;
+      height: 4px;
+      border-radius: 999px;
+      background: var(--boot-deep);
+      margin-bottom: 12px;
+    }
+
+    .about {
+      display: flex;
+      gap: 36px;
+      align-items: flex-start;
+    }
+
+    .about img {
+      width: 148px;
+      height: 148px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex-shrink: 0;
+      border: 3px solid var(--surface);
+      outline: 1px solid var(--line);
+    }
+
+    .about p {
+      max-width: 65ch;
+    }
+
+    .about p + p { margin-top: 14px; }
+
+    .catalog {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .project {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 22px 24px 16px;
+    }
+
+    .project h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    .project p {
+      color: var(--muted);
+      max-width: 68ch;
+    }
+
+    .project-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px 20px;
+      flex-wrap: wrap;
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      color: var(--moss-deep);
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      padding: 3px 8px;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      font-weight: 800;
+      font-size: 0.95rem;
+    }
+
+    .links a {
+      color: var(--moss-deep);
+      text-decoration: none;
+      border-bottom: 1.5px solid var(--boot-deep);
+    }
+
+    .links a:hover {
+      color: var(--cheek-ink);
+      border-bottom-color: var(--cheek);
+    }
+
+    .job {
+      display: grid;
+      grid-template-columns: 12.5rem minmax(0, 1fr);
+      gap: 12px 28px;
+      padding: 22px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .job:last-child { border-bottom: 1px solid var(--line); }
+
+    .job .when {
+      color: var(--boot-ink);
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: -0.01em;
+      padding-top: 2px;
+    }
+
+    .job h3 {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+
+    .job .org {
+      color: var(--moss);
+      font-weight: 700;
+      font-size: 0.98rem;
+      margin: 3px 0 8px;
+    }
+
+    .job ul {
+      padding-left: 1.15rem;
+      color: var(--muted);
+    }
+
+    .job li + li { margin-top: 4px; }
+
+    .job li::marker { color: var(--boot-deep); }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skills span {
+      background: var(--surface);
+      color: var(--ink);
+      border: 1px solid var(--line);
+      border-bottom: 3px solid var(--leaf-shadow);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: -0.01em;
+    }
+
+    .skills span:nth-child(3n + 2) { border-bottom-color: var(--boot-deep); }
+    .skills span:nth-child(3n) { border-bottom-color: var(--cheek); }
+
+    #contact {
+      background: var(--moss);
+      border-top: none;
+      color: var(--cream);
+    }
+
+    #contact h2 { color: var(--cream); }
+    #contact h2::before { background: var(--boot); }
+
+    #contact p {
+      color: var(--cream);
+      max-width: 42ch;
+      margin: -8px 0 24px;
+    }
+
+    #contact .btn.primary {
+      background: var(--cream);
+      border-color: var(--cream);
+      color: var(--moss-deep);
+    }
+
+    #contact .btn.primary:hover {
+      background: var(--leaf-bright);
+      border-color: var(--leaf-bright);
+      color: var(--moss-deep);
+    }
+
+    #contact .btn.secondary {
+      border-color: var(--cream);
+      color: var(--cream);
+    }
+
+    #contact .btn.secondary:hover {
+      background: rgba(247, 246, 240, 0.12);
+      color: var(--cream);
+    }
+
+    footer {
+      padding: 28px 0 40px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    @media (max-width: 800px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "hello"
+          "title"
+          "tag"
+          "actions";
+        row-gap: 0;
+        padding: 56px 0 48px;
+      }
+
+      .hello { margin-bottom: 10px; }
+
+      h1 { margin-bottom: 22px; }
+
+      .buttons { width: min(100%, 360px); }
+    }
+
+    @media (max-width: 720px) {
+      nav .wrap {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+        padding: 12px 0 8px;
+      }
+
+      nav ul { gap: 6px 16px; }
+    }
 
     @media (max-width: 640px) {
-      nav ul { gap: 14px; }
+      .wrap { width: min(1040px, calc(100% - 36px)); }
+
       nav ul li.hide-sm { display: none; }
-      header.wrap { padding: 64px 24px 48px; }
+
+      main section { padding: 52px 0; }
+
       .about { flex-direction: column; }
-      .job { grid-template-columns: 1fr; gap: 4px; }
+
+      .job {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+
+      .project { padding: 18px 16px 14px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .btn { transition: none; }
+      .btn:active { transform: none; }
     }
   </style>
 </head>
@@ -95,123 +524,133 @@
   </nav>
 
   <!-- ===== EDIT: HERO ===== -->
-  <header class="wrap">
-    <p class="hello">Hi, my name is</p>
-    <h1>Anne Therese Argonza</h1>
-    <p class="tagline">Data Science student at NJIT passionate about data-driven solutions for humanitarian impact.</p>
-    <div class="buttons">
-      <!-- Upload your resume to this repo as resume.pdf and this button works -->
-      <a class="btn primary" href="resume.pdf" target="_blank">Resume</a>
-      <a class="btn secondary" href="https://github.com/atargonza" target="_blank">GitHub</a>
-      <a class="btn secondary" href="https://www.linkedin.com/in/anne-therese-argonza" target="_blank">LinkedIn</a>
+  <header class="hero">
+    <div class="wrap hero-grid">
+      <p class="hello">Hi, my name is</p>
+      <h1>Anne Therese Argonza</h1>
+      <p class="tagline">Data Science student at NJIT passionate about data-driven solutions for humanitarian impact.</p>
+      <div class="buttons">
+        <!-- Upload your resume to this repo as resume.pdf and this button works -->
+        <a class="btn primary" href="resume.pdf" target="_blank" rel="noopener">Resume</a>
+        <a class="btn secondary" href="https://github.com/atargonza" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn secondary" href="https://www.linkedin.com/in/anne-therese-argonza" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
     </div>
   </header>
 
-  <!-- ===== EDIT: ABOUT ===== -->
-  <section id="about">
-    <div class="wrap">
-      <h2>About me</h2>
-      <div class="about">
-        <!-- Optional photo: upload photo.jpg to this repo, then delete the two comment markers around the next line -->
-        <!-- <img src="photo.jpg" alt="Photo of Anne Therese Argonza"> -->
-        <div>
-          <p>I'm a sophomore at NJIT studying Data Science with a minor in Innovation and Entrepreneurship. I'm interested in technology and health.</p>
-          <p>Outside of class I'm involved in WiCS, GigaBeats, and community service. Right now I'm looking for technology, data, and AI/ML internships for Summer 2027.</p>
+  <main>
+    <!-- ===== EDIT: ABOUT ===== -->
+    <section id="about">
+      <div class="wrap">
+        <h2>About me</h2>
+        <div class="about">
+          <!-- Optional photo: upload photo.jpg to this repo, then delete the two comment markers around the next line -->
+          <!-- <img src="photo.jpg" alt="Photo of Anne Therese Argonza"> -->
+          <div>
+            <p>I'm a sophomore at NJIT studying Data Science with a minor in Innovation and Entrepreneurship. I'm interested in technology and health.</p>
+            <p>Outside of class I'm involved in WiCS, GigaBeats, and community service. Right now I'm looking for technology, data, and AI/ML internships for Summer 2027.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== EDIT: PROJECTS (copy a whole <div class="card"> block to add another) ===== -->
-  <section id="projects">
-    <div class="wrap">
-      <h2>Projects</h2>
-      <div class="grid">
+    <!-- ===== EDIT: PROJECTS (copy a whole <article class="project"> block to add another) ===== -->
+    <section id="projects">
+      <div class="wrap">
+        <h2>Projects</h2>
+        <div class="catalog">
 
-        <div class="card">
-          <h3>[Project One]</h3>
-          <p>[One or two sentences: what it does, who it's for, and one result, e.g. "used by 40 students".]</p>
-          <div class="tags"><span class="tag">Tech</span><span class="tag">Tech</span><span class="tag">Tech</span></div>
-          <div class="links">
-            <a href="https://github.com/atargonza/project-one" target="_blank">Code</a>
-            <a href="https://project-one.vercel.app" target="_blank">Live demo</a>
+          <article class="project">
+            <h3>[Project One]</h3>
+            <p>[One or two sentences: what it does, who it's for, and one result, e.g. "used by 40 students".]</p>
+            <div class="project-meta">
+              <div class="tags"><span class="tag">Tech</span><span class="tag">Tech</span><span class="tag">Tech</span></div>
+              <div class="links">
+                <a href="https://github.com/atargonza/project-one" target="_blank" rel="noopener">Code</a>
+                <a href="https://project-one.vercel.app" target="_blank" rel="noopener">Live demo</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project">
+            <h3>[Project Two]</h3>
+            <p>[What I built and what I learned building it.]</p>
+            <div class="project-meta">
+              <div class="tags"><span class="tag">Tech</span><span class="tag">Tech</span></div>
+              <div class="links">
+                <a href="https://github.com/atargonza/project-two" target="_blank" rel="noopener">Code</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project">
+            <h3>[Project Three]</h3>
+            <p>[A class project, hackathon build, or something I made for fun.]</p>
+            <div class="project-meta">
+              <div class="tags"><span class="tag">Tech</span><span class="tag">Tech</span><span class="tag">Tech</span></div>
+              <div class="links">
+                <a href="https://github.com/atargonza/project-three" target="_blank" rel="noopener">Code</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== EDIT: EXPERIENCE (copy a whole <div class="job"> block to add another, or delete this section) ===== -->
+    <section id="experience">
+      <div class="wrap">
+        <h2>Experience</h2>
+
+        <div class="job">
+          <div class="when">[Jun 2026 to Aug 2026]</div>
+          <div>
+            <h3>[Role]</h3>
+            <div class="org">[Company Name]</div>
+            <ul>
+              <li>[What I built or improved, with a number if I have one]</li>
+              <li>[A tool, skill, or team I worked with]</li>
+            </ul>
           </div>
         </div>
 
-        <div class="card">
-          <h3>[Project Two]</h3>
-          <p>[What I built and what I learned building it.]</p>
-          <div class="tags"><span class="tag">Tech</span><span class="tag">Tech</span></div>
-          <div class="links">
-            <a href="https://github.com/atargonza/project-two" target="_blank">Code</a>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>[Project Three]</h3>
-          <p>[A class project, hackathon build, or something I made for fun.]</p>
-          <div class="tags"><span class="tag">Tech</span><span class="tag">Tech</span><span class="tag">Tech</span></div>
-          <div class="links">
-            <a href="https://github.com/atargonza/project-three" target="_blank">Code</a>
+        <div class="job">
+          <div class="when">[Sep 2025 to Present]</div>
+          <div>
+            <h3>[Role, e.g. Member / Tutor / Research Assistant]</h3>
+            <div class="org">[Club, Lab, or Organization]</div>
+            <ul>
+              <li>[What I do there]</li>
+            </ul>
           </div>
         </div>
 
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ===== EDIT: EXPERIENCE (copy a whole <div class="job"> block to add another, or delete this section) ===== -->
-  <section id="experience">
-    <div class="wrap">
-      <h2>Experience</h2>
-
-      <div class="job">
-        <div class="when">[Jun 2026 to Aug 2026]</div>
-        <div>
-          <h3>[Role]</h3>
-          <div class="org">[Company Name]</div>
-          <ul>
-            <li>[What I built or improved, with a number if I have one]</li>
-            <li>[A tool, skill, or team I worked with]</li>
-          </ul>
+    <!-- ===== EDIT: SKILLS ===== -->
+    <section id="skills">
+      <div class="wrap">
+        <h2>Skills</h2>
+        <div class="skills">
+          <span>Python</span><span>Java</span><span>MATLAB</span><span>ML</span><span>Statistics</span><span>Git &amp; GitHub</span>
         </div>
       </div>
+    </section>
 
-      <div class="job">
-        <div class="when">[Sep 2025 to Present]</div>
-        <div>
-          <h3>[Role, e.g. Member / Tutor / Research Assistant]</h3>
-          <div class="org">[Club, Lab, or Organization]</div>
-          <ul>
-            <li>[What I do there]</li>
-          </ul>
+    <!-- ===== EDIT: CONTACT ===== -->
+    <section id="contact">
+      <div class="wrap contact">
+        <h2>Get in touch</h2>
+        <p>I'm currently looking for Summer 2027 internships. The best way to reach me is email.</p>
+        <div class="buttons">
+          <a class="btn primary" href="mailto:atargonza@gmail.com">Email me</a>
+          <a class="btn secondary" href="https://www.linkedin.com/in/anne-therese-argonza" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
-
-    </div>
-  </section>
-
-  <!-- ===== EDIT: SKILLS ===== -->
-  <section id="skills">
-    <div class="wrap">
-      <h2>Skills</h2>
-      <div class="skills">
-        <span>Python</span><span>Java</span><span>MATLAB</span><span>ML</span><span>Statistics</span><span>Git &amp; GitHub</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== EDIT: CONTACT ===== -->
-  <section id="contact">
-    <div class="wrap contact">
-      <h2>Get in touch</h2>
-      <p>I'm currently looking for Summer 2027 internships. The best way to reach me is email.</p>
-      <div class="buttons">
-        <a class="btn primary" href="mailto:atargonza@gmail.com">Email me</a>
-        <a class="btn secondary" href="https://www.linkedin.com/in/anne-therese-argonza" target="_blank">LinkedIn</a>
-      </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
   <footer>
     <!-- EDIT: your name -->
