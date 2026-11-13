@@ -124,64 +124,54 @@
       border-bottom-color: var(--boot-deep);
     }
 
-    /* Hero: full-bleed leaf field, name on the left, offer and stacked pills on the right. */
+    /* Hero: stacked layout */
     .hero {
       background-color: var(--leaf);
       background-image: linear-gradient(180deg, var(--leaf-bright) 0%, var(--leaf) 58%, #B0D890 100%);
     }
 
     .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
-      grid-template-areas:
-        "title hello"
-        "title tag"
-        "title actions";
-      column-gap: 64px;
-      row-gap: 0;
-      align-items: center;
-      padding: 84px 0 68px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 72px 0 60px;
+      max-width: 820px;
     }
 
     .hello {
-      grid-area: hello;
-      align-self: end;
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 1.1rem;
       letter-spacing: -0.01em;
       color: var(--moss-deep);
-      margin-bottom: 8px;
+      margin: 0;
     }
 
     h1 {
-      grid-area: title;
-      align-self: center;
-      font-size: clamp(3rem, 6.2vw, 5.15rem);
+      font-size: clamp(2.5rem, 5.5vw, 4.25rem);
       font-weight: 800;
-      line-height: 0.92;
-      letter-spacing: -0.04em;
-      text-wrap: balance;
+      line-height: 1.05;
+      letter-spacing: -0.035em;
       color: var(--ink);
+      margin: 0;
     }
 
     .tagline {
-      grid-area: tag;
-      font-size: clamp(1.4rem, 2.4vw, 1.9rem);
-      font-weight: 800;
-      line-height: 1.25;
-      letter-spacing: -0.025em;
+      font-size: clamp(1.2rem, 2vw, 1.5rem);
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.02em;
       color: var(--ink);
-      margin: 0 0 26px;
-      text-wrap: balance;
+      margin: 4px 0 12px;
+      max-width: 48ch;
     }
 
-    .buttons {
-      grid-area: actions;
+    .hero .buttons {
       display: flex;
-      flex-direction: column;
-      align-items: stretch;
-      gap: 10px;
-      width: min(100%, 280px);
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 12px;
+      width: auto;
     }
 
     .btn {
@@ -455,22 +445,15 @@
     }
 
     @media (max-width: 800px) {
-      .hero-grid {
-        grid-template-columns: 1fr;
-        grid-template-areas:
-          "hello"
-          "title"
-          "tag"
-          "actions";
-        row-gap: 0;
-        padding: 56px 0 48px;
+
+    .hero-grid {
+
+      padding: 56px 0 44px;
+
+      gap: 14px;
+
       }
 
-      .hello { margin-bottom: 10px; }
-
-      h1 { margin-bottom: 22px; }
-
-      .buttons { width: min(100%, 360px); }
     }
 
     @media (max-width: 720px) {
@@ -654,7 +637,7 @@
 
   <footer>
     <!-- EDIT: your name -->
-    <p>&copy; 2026 Anne Therese Argonza &middot; Built at a WiCS workshop and hosted on GitHub Pages</p>
+    <p>&copy; 2026 Anne Therese Argonza &middot; Made With a Deep Love for Mangos, Music, Math, and Making an Impact &lt;3 </p>
   </footer>
 
 </body>
